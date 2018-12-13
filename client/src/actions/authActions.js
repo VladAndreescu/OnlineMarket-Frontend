@@ -4,7 +4,7 @@ import setAuthenticationToken from '../utils/setAuthenticationToken'
 import jwt_decode from 'jwt-decode'
 
 //import types
-import {GET_ERRORS} from './types'
+import {GET_ERRORS, SET_CURRENT_USER} from './types'
 
 
 //Register User
@@ -37,6 +37,9 @@ export const userAuthenticate = userData => dispatch =>{
 		
 		//Decode the token in order to receive the user information
 		const decoded = jwt_decode(token);
+
+		//Set current user
+		dispatch(setCurrentUser(decoded))
 	})
 	.catch(err =>{
 		dispatch({
@@ -46,3 +49,10 @@ export const userAuthenticate = userData => dispatch =>{
 	})
 }
 
+//Set the user that is currently logged in
+export const setCurrentUser = (decoded) =>{
+	return {
+		type: SET_CURRENT_USER,
+		payload: decoded
+	}
+}
