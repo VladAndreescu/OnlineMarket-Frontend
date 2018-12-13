@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Provider } from 'react-redux'
+import jwt_decode from 'jwt-decode'
 
 
 // import components
@@ -15,10 +16,26 @@ import Register from './components/authentication/Register'
 //import files
 import store from './store'
 
+//import functions
+import setAuthenticationToken from './utils/setAuthenticationToken'
+import {setCurrentUser} from './actions/authActions'
+
 //import CSS
 import './App.css';
 
+//Check if the token exists
+if(localStorage.jwt_token){
+	//Insert the token into Authorization Header
+	setAuthenticationToken(localStorage.jwt_token)
 
+	//Retrieve user information by decoding the token
+	const decoded = jwt_decode(localStorage.jwt_token)
+
+	//Set the value for user and isAuthenticated
+	store.dispatch(setCurrentUser(decoded))
+}else{
+	console.log('No user is currently logged in')
+}
 
 class App extends Component {
   render() {
@@ -27,11 +44,7 @@ class App extends Component {
 			<Router>
 				<div className="App">
 					<Navbar/>
-					{
-						//surrounding the Home component with a Route because I want to display it only on a single path
-					}
 					<Route  exact path="/" component={Home}/> 
-
 					<div className="container">
 						<Route exact path="/register" component = {Register} />
 						<Route exact path="/login" component ={Login} />
