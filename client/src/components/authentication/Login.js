@@ -1,6 +1,11 @@
-
 //import utils
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
+
+//import actions
+import {userAuthenticate} from '../../actions/authActions'
 
 class Login extends Component {
 	constructor(){
@@ -33,6 +38,10 @@ class Login extends Component {
 	}
 	
 	render() {
+		//using destructuring in order to retrieve the errors from the state
+		const { errors } = this.state
+
+
 		return (
 			<div className="loginUser">
 				<div className="container">
@@ -44,22 +53,28 @@ class Login extends Component {
 								<div className="form-group">
 									<input 
 										type="email" 
-										className="form-control" 
+										className={classnames('form-control', {
+											'is-invalid': errors.email
+										})}
 										placeholder="Email Address" 
 										name="email"
 										value={this.state.email}
 										onChange={this.onChange} 
 										/>
+										{errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
 								</div>
 								<div className="form-group">
 									<input 
 										type="password" 
-										className="form-control" 
+										className={classnames('form-control', {
+											'is-invalid': errors.password
+										})} 
 										placeholder="Password" 
 										name="password"
 										value={this.state.password}
 										onChange={this.onChange} 
 										/>
+										{errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
 								</div>
 								<div className="col-md-6 m-auto">
 									<input type="submit" className="btn btn-info btn-block mt-4" />
@@ -73,4 +88,15 @@ class Login extends Component {
 	}
 }
 
-export default Login
+Login.propTypes = {
+	userAuthenticate: PropTypes.func.isRequired,
+	auth: PropTypes.object.isRequired,
+	errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) =>({
+	auth: state.auth,
+	errors: state.errors
+})
+
+export default connect(null, {userAuthenticate})(Login)
