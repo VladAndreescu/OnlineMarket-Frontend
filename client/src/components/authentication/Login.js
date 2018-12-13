@@ -29,12 +29,24 @@ class Login extends Component {
 		e.preventDefault();
 		
 		//display the existing user
-		const newUser = {
+		const userData = {
 			email: this.state.email,
 			password: this.state.password,
 		}
 
-		console.log(newUser)
+		//call the userAuthenticate function 
+		this.props.userAuthenticate(userData)
+	}
+
+	componentWillReceiveProps(nextProps){
+		if(nextProps.auth.isAuthenticated){
+			this.props.history.push('/items')
+		}
+		//check if there are any errors in user's input
+		if(nextProps.errors){
+			//populate the errors object with the errors received
+			this.setState({errors: nextProps.errors})
+		}
 	}
 	
 	render() {
@@ -99,4 +111,4 @@ const mapStateToProps = (state) =>({
 	errors: state.errors
 })
 
-export default connect(null, {userAuthenticate})(Login)
+export default connect(mapStateToProps, {userAuthenticate})(Login)
