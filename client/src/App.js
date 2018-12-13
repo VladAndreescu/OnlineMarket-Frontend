@@ -18,7 +18,7 @@ class App extends Component {
 			 {
 				 //surrounding the Home component with a Route because I want to display it only on a single path
 			 }
-			<Route path="/" component={Home}/> 
+			<Route  exact path="/" component={Home}/> 
 			<Footer/>
 		</div>
 	  </Router>
