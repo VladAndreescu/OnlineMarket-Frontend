@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Provider } from 'react-redux'
-import {createStore, applyMiddleware} from 'redux'
+
 
 // import components
 import Navbar from './components/layout/Navbar'
@@ -12,10 +12,13 @@ import Home from './components/layout/Home'
 import Login from  './components/authentication/Login'
 import Register from './components/authentication/Register'
 
+//import files
+import store from './store'
+
+//import CSS
 import './App.css';
 
-//creating the store for Redux
-const  store = createStore(() => [], {}, applyMiddleware())
+
 
 class App extends Component {
   render() {
