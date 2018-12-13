@@ -22,7 +22,8 @@ class Register extends Component {
 	//create onSubmit function
 	onSubmit(e){
 		e.preventDefault();
-		
+
+		//Create a new user based on the user inputs
 		const newUser = {
 			name: this.state.name,
 			email: this.state.email,
@@ -44,7 +45,7 @@ class Register extends Component {
 							<div className="form-group">
 								<input 
 									type="text" 
-									className="form-control form-control" 
+									className="form-control" 
 									placeholder="Name" 
 									name="name" 
 									value={this.state.name}
@@ -54,7 +55,7 @@ class Register extends Component {
 							<div className="form-group">
 								<input 
 									type="email" 
-									className="form-control form-control" 
+									className="form-control" 
 									placeholder="Email Address" 
 									name="email" 
 									value={this.state.email}
@@ -64,7 +65,7 @@ class Register extends Component {
 							<div className="form-group">
 								<input 
 									type="password" 
-									className="form-control form-control" 
+									className="form-control" 
 									placeholder="Password" 
 									name="password" 
 									value={this.state.password}
@@ -74,7 +75,7 @@ class Register extends Component {
 							<div className="form-group">
 								<input 
 									type="password" 
-									className="form-control form-control" 
+									className="form-control" 
 									placeholder="Confirm Password" 
 									name="password2"
 									value={this.state.password2} 
