@@ -48,6 +48,12 @@ class Login extends Component {
 			this.setState({errors: nextProps.errors})
 		}
 	}
+
+	componentDidMount(){
+		if(this.props.auth.isAuthenticated){
+			this.props.history.push('/items')
+		}
+	}
 	
 	render() {
 		//using destructuring in order to retrieve the errors from the state
