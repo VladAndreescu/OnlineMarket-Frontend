@@ -119,6 +119,27 @@ export const unlike = id => dispatch =>{
 			
 }
 
+//--------------Make an offer action--------------
+
+// Make an offer
+export const makeOffer = (postId, newOffer) => dispatch =>{
+	axios.post(`/api/posts/contact/${postId}`, newOffer)
+		.then(res => {
+			dispatch({
+				type: GET_POST,
+				payload: res.data
+			})
+		})
+		.catch(err => {
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+			
+		})
+			
+}
+
 
 //Set Loading State
 export const setLoadingPost = () =>{

@@ -121,7 +121,7 @@ class PostItem extends Component {
 }
 
 
-PostItem.PropTypes = {
+PostItem.propTypes = {
 	post: PropTypes.object.isRequired,
 	auth: PropTypes.object.isRequired,
 	removePost: PropTypes.func.isRequired,

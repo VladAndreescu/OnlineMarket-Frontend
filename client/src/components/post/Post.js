@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 
 import PostItem from '../posts/PostItem'
+import ContactSeller from './ContactSeller'
 
 import Spinner from '../../utils/Spinner'
 
@@ -27,6 +28,7 @@ class Post extends Component {
 			postValue = (
 				<div>
 					<PostItem post={post} displayButtons={false}/>
+					<ContactSeller postId={post._id}/>
 				</div>
 				
 			)
@@ -37,7 +39,7 @@ class Post extends Component {
 			<div className="container">
 				<div className="row">
 					<div className="col-md-12">
-						<Link className="btn btn-info" to="/allPosts" style={{marginBottom:'15px'}}>Back</Link>
+						<Link className="btn btn-success" to="/allPosts" style={{marginBottom:'15px'}}>Back</Link>
 						{postValue}
 					</div>
 				</div>
@@ -47,7 +49,7 @@ class Post extends Component {
   }
 }
 
-Post.PropTypes = {
+Post.propTypes = {
 	getPost: PropTypes.func.isRequired,
 	post: PropTypes.object.isRequired
 }
