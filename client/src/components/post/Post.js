@@ -10,6 +10,7 @@ import Spinner from '../../utils/Spinner'
 
 
 import {getPost} from '../../actions/postActions'
+import DisplayOffers from './DisplayOffers';
 
 class Post extends Component {
 
@@ -22,13 +23,14 @@ class Post extends Component {
 
 		let postValue
 
-		if(post == null || loading === true){
+		if(post == null || loading === true || Object.keys(post).length === 0){
 			postValue = <Spinner/>
 		}else{
 			postValue = (
 				<div>
 					<PostItem post={post} displayButtons={false}/>
 					<ContactSeller postId={post._id}/>
+					<DisplayOffers postId={post._id} offers={post.offers} />
 				</div>
 				
 			)

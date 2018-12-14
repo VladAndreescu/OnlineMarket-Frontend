@@ -35,8 +35,6 @@ class ContactSeller extends Component {
 			value: this.state.value,
 			text: this.state.text,
 			name: user.name,
-
-			error:{}
 		}
 		this.props.makeOffer(postId, newOffer)
 		this.setState({
@@ -58,7 +56,7 @@ class ContactSeller extends Component {
 		<div className="contact-seller mb-3">
 			<div className="card card-info">
 		  		<div className="card-header bg-success text-black " >
-					Send a message
+					Send an offer
 		  		</div>
 		  		<div className="card-body">
 					<form onSubmit={this.onSubmit}>

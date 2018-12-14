@@ -47,7 +47,8 @@ class PostItem extends Component {
                   	<p className="lead">{post.category}</p>
 					<p style={{
 							fontSize: '20px',
-							textDecoration: 'underline'
+							textDecoration: 'underline',
+							paddingTop: '1cm'
 						}}
 						>Price:
 					</p>
@@ -56,14 +57,15 @@ class PostItem extends Component {
 				<div className="cold-md-4">
 					<p style={{
 							fontSize: '20px',
-							textDecoration: 'underline'
+							textDecoration: 'underline',
 						}}
 						>Description:
 					</p>
                   	<p className="lead">{post.description}</p>
 					<p style={{
 							fontSize: '20px',
-							textDecoration: 'underline'
+							textDecoration: 'underline',
+							paddingTop: '1cm'
 						}}
 						>City:
 					</p>

@@ -140,6 +140,25 @@ export const makeOffer = (postId, newOffer) => dispatch =>{
 			
 }
 
+//Remove Offer
+export const removeOffer = (postId, offerId) => dispatch =>{
+	axios.delete(`/api/posts/contact/${postId}/${offerId}`)
+		.then(res => {
+			dispatch({
+				type: GET_POST,
+				payload: res.data
+			})
+		})
+		.catch(err => {
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+			
+		})
+			
+}
+
 
 //Set Loading State
 export const setLoadingPost = () =>{
