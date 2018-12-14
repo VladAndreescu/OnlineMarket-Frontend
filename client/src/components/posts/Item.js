@@ -62,7 +62,7 @@ class Item extends Component {
 	return (
 		<div className="post-form mb-3">
 			<div className="card card-info">
-		  		<div className="card-header bg-info text-black " >
+		  		<div className="card-header bg-success text-black " >
 					Post an Item
 		  		</div>
 		  		<div className="card-body">
@@ -148,7 +148,7 @@ class Item extends Component {
 
 							</div>
 			  			</div>
-			  			<button type="submit" className="btn btn-dark">Post Item</button>
+			  			<button type="submit" className="btn btn-success">Post Item</button>
 					</form>
 		 		 </div>
 			</div>
