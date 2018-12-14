@@ -48,7 +48,7 @@ export const removePost = id => dispatch =>{
 		.then(res => {
 			dispatch({
 				type: DELETE_POST,
-				payload: res.data
+				payload: id
 			})
 		})
 		.catch(err => {

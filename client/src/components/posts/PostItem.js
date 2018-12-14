@@ -5,12 +5,14 @@ import classnames from 'classnames'
 import {Link} from 'react-router-dom'
 import Posts from './Posts';
 
+import {removePost} from '../../actions/postActions'
+
 
 
 class PostItem extends Component {
   
 	onDeleteClick(id){
-		console.log(id)
+		this.props.removePost(id)
 	}
 	
 	render() {
@@ -106,10 +108,11 @@ class PostItem extends Component {
 
 PostItem.PropTypes = {
 	post: PropTypes.object.isRequired,
-	auth: PropTypes.object.isRequired
+	auth: PropTypes.object.isRequired,
+	removePost: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) =>({
 	auth: state.auth
 })
-export default connect(mapStateToProps)(PostItem)
+export default connect(mapStateToProps, {removePost})(PostItem)
