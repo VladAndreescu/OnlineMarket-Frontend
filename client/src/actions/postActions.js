@@ -2,6 +2,8 @@ import axios from 'axios'
 
 import{GET_ERRORS, ADD_POST, GET_POSTS, POST_LOADING, DELETE_POST} from './types'
 
+//--------------Post Actions--------------
+
 // Create a new post
 export const createPost = postData => dispatch =>{
 	axios.post('/api/posts', postData)
@@ -60,6 +62,42 @@ export const removePost = id => dispatch =>{
 		})
 			
 }
+
+//--------------Follow a post action--------------
+// Fallowing a post is done by clicking on the like button
+
+//Like a post
+export const like = id => dispatch =>{
+	axios.post(`/api/posts/like/${id}`)
+		.then(res => {
+			dispatch(getPosts())
+		})
+		.catch(err => {
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+			
+		})
+			
+}
+
+//Unlike a post
+export const unlike = id => dispatch =>{
+	axios.post(`/api/posts/unlike/${id}`)
+		.then(res => {
+			dispatch(getPosts())
+		})
+		.catch(err => {
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+			
+		})
+			
+}
+
 
 //Set Loading State
 export const setLoadingPost = () =>{
