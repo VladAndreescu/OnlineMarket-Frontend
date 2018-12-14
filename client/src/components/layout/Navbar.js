@@ -23,7 +23,7 @@ class Navbar extends Component {
 	const loggedInLinks = (
 		<ul className="navbar-nav ml-auto">
 			<li className="nav-item">
-            	<Link to="/items" className="nav-link" >Items Feed</Link>
+            	<Link to="/listItem" className="nav-link" >List an Item</Link>
           	</li>
           	<li className="nav-item">
             	<Link to="/" onClick={this.onLogoutClick.bind(this)} className="nav-link">Log out</Link>
@@ -47,7 +47,7 @@ class Navbar extends Component {
 	return (
 		<nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
     		<div className="container">
-      			<Link to="/" className="navbar-brand" >MyStuff</Link>
+      			<Link to="/allPosts" className="navbar-brand" >MyStuff</Link>
       			<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
         			<span className="navbar-toggler-icon"></span>
       			</button>
@@ -55,7 +55,7 @@ class Navbar extends Component {
       			<div className="collapse navbar-collapse" id="mobile-nav">
         			<ul className="navbar-nav mr-auto">
           				<li className="nav-item">
-            				<Link to="/items" className="nav-link" > Items </Link>
+            				<Link to="/allposts" className="nav-link" > View Listed Items </Link>
          				 </li>
         			</ul>
 					{isAuthenticated ? loggedInLinks : guestLinks}

@@ -1,9 +1,10 @@
 
 //import utils
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import jwt_decode from 'jwt-decode'
+import PrivateRoute from './utils/PrivateRoute'
 
 
 // import components
@@ -12,6 +13,9 @@ import Footer from './components/layout/Footer'
 import Home from './components/layout/Home'
 import Login from  './components/authentication/Login'
 import Register from './components/authentication/Register'
+import Posts from './components/posts/Posts'
+import Item from './components/posts/Item'
+import Post from './components/post/Post'
 
 //import files
 import store from './store'
@@ -22,6 +26,7 @@ import {setCurrentUser, userLogout} from './actions/authActions'
 
 //import CSS
 import './App.css';
+
 
 //Check if the token exists
 if(localStorage.jwt_token){
@@ -58,7 +63,13 @@ class App extends Component {
 					<div className="container">
 						<Route exact path="/register" component = {Register} />
 						<Route exact path="/login" component ={Login} />
-						
+						<Route exact path="/allposts" component={Posts}/>
+						<Switch>
+							<PrivateRoute exact path="/listItem" component={Item}/>
+						</Switch>
+						<Switch>
+							<PrivateRoute exact path="/post/:id" component={Post}/>
+						</Switch>
 					</div>
 					<Footer/>
 				</div>

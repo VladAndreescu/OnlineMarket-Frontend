@@ -40,7 +40,7 @@ class Login extends Component {
 
 	componentWillReceiveProps(nextProps){
 		if(nextProps.auth.isAuthenticated){
-			this.props.history.push('/items')
+			this.props.history.push('/allposts')
 		}
 		//check if there are any errors in user's input
 		if(nextProps.errors){
@@ -51,7 +51,7 @@ class Login extends Component {
 
 	componentDidMount(){
 		if(this.props.auth.isAuthenticated){
-			this.props.history.push('/items')
+			this.props.history.push('/allposts')
 		}
 	}
 	
