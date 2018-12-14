@@ -13,6 +13,7 @@ import {userRegister} from '../../actions/authActions'
 class Register extends Component {
 	constructor(){
 		super()
+		//initial state
 		this.state ={
 			name: '',
 			email: '',
@@ -24,12 +25,12 @@ class Register extends Component {
 		this.onChange = this.onChange.bind(this)
 		this.onSubmit = this.onSubmit.bind(this)
 	}
-	//create onChange function
+	//create onChange function which link the user input to the specific target in the state
 	onChange(e){
 		this.setState({[e.target.name]: e.target.value})
 	}
 
-	//create onSubmit function
+	//create onSubmit function which calls the function that register the user into database
 	onSubmit(e){
 		e.preventDefault();
 
@@ -40,19 +41,22 @@ class Register extends Component {
 			password: this.state.password,
 			password2: this.state.password2
 		}
-		
+		//call the function in order to insert the user information in database
+		//I am passing history as well because I want to redirect the user from register page to login page
 		this.props.userRegister(newUser, this.props.history)
 		
 	}
+	//populate the error object if there are errors
 	componentWillReceiveProps(nextProps){
 		if(nextProps.errors){
 			this.setState({errors: nextProps.errors})
 		}
 	}
-
+	//check if the user is authenticated
+	//if he is than redirect him to /allposts page
 	componentDidMount(){
 		if(this.props.auth.isAuthenticated){
-			this.props.history.push('/items')
+			this.props.history.push('/allposts')
 		}
 	}
 	
@@ -135,13 +139,15 @@ class Register extends Component {
 		)
 	}
 }
-
+// declaring the PropTypes for Register component
 Register.propTypes = {
 	userRegister: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
 }
 
+//developed the mapStateToProps function for Register component
+//it will retrieve the state of authentication as well as the information about the current user logged in and the errors
 const mapStateToProps = (state) =>({
 	auth: state.auth,
 	errors: state.errors

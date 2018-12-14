@@ -1,9 +1,11 @@
+
+//importing utils
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import classnames from 'classnames'
 
-
+//importing actions
 import {makeOffer} from '../../actions/postActions'
 
 
@@ -11,6 +13,7 @@ import {makeOffer} from '../../actions/postActions'
 class ContactSeller extends Component {
 	constructor(props){
 		super(props);
+		//initial state
 		this.state ={
 			value: '',
 			text: '',
@@ -21,28 +24,33 @@ class ContactSeller extends Component {
 		this.onSubmit = this.onSubmit.bind(this)
 	}
 
+	//create onChange function which link the user input to the specific target in the state
 	onChange(e){
 		this.setState({[e.target.name]: e.target.value})
 	}
 
+	//create onSubmit function which calls the function that creates a new offer for a post based on the postId
 	onSubmit(e){
 		e.preventDefault()
 
+		//using destructuring in order to retrieve current user and postId
 		const {user} = this.props.auth
 		const {postId} = this.props
 
+		//Create a new offer based on the user inputs
 		const newOffer ={
 			value: this.state.value,
 			text: this.state.text,
 			name: user.name,
 		}
 		this.props.makeOffer(postId, newOffer)
+		//refresh the inputs after the offer was created
 		this.setState({
 			value: '',
 			text: ''
 		})
 	}
-
+	//populate the error object if there are errors
 	componentWillReceiveProps(nextProps){
 		if(nextProps.errors){
 			this.setState({errors: nextProps.errors})
@@ -50,8 +58,9 @@ class ContactSeller extends Component {
 	}
 
   render() {
-
+	//using destructuring in order to retrieve the errors
 	const {errors} = this.state
+	
 	return (
 		<div className="contact-seller mb-3">
 			<div className="card card-info">
@@ -101,14 +110,15 @@ class ContactSeller extends Component {
 	)
   }
 }
-
+// declaring the PropTypes for ContactSeller component
 ContactSeller.propTypes = {
 	auth: PropTypes.object.isRequired,
 	postId: PropTypes.string.isRequired,
 	errors: PropTypes.object.isRequired
 	
 }
-
+//developed the mapStateToProps function for ContactSeller component
+//it will retrieve the state of authentication as well as the information about the current user logged in and th errors
 const mapStateToProps = (state) =>({
 	auth: state.auth,
 	errors: state.errors

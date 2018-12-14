@@ -9,6 +9,7 @@ import {createPost} from '../../actions/postActions'
 class Item extends Component {
 	constructor(props){
 		super(props);
+		//initial state
 		this.state ={
 			category: '',
 			description: '',
@@ -23,14 +24,17 @@ class Item extends Component {
 		this.onSubmit = this.onSubmit.bind(this)
 	}
 
+	//create onChange function which link the user input to the specific target in the state
 	onChange(e){
 		this.setState({[e.target.name]: e.target.value})
 	}
 
+	//create onSubmit function which calls the function that creates the post into database		
 	onSubmit(e){
 		e.preventDefault()
 
 		const {user} = this.props.auth
+		//create the new post based on the user inputs
 		const newPost = {
 			category: this.state.category,
 			description: this.state.description,
@@ -41,6 +45,8 @@ class Item extends Component {
 		}
 
 		this.props.createPost(newPost)
+
+		//refresh the inputs after the post was created
 		this.setState({
 			category: '',
 			description: '',
@@ -49,7 +55,7 @@ class Item extends Component {
 			city: ''
 		})
 	}
-
+	//populate the error object if there are errors
 	componentWillReceiveProps(nextProps){
 		if(nextProps.errors){
 			this.setState({errors: nextProps.errors})
@@ -157,12 +163,15 @@ class Item extends Component {
   }
 }
 
+// declaring the PropTypes for Item component
 Item.propTypes = {
 	createPost: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
 }
 
+//developed the mapStateToProps function for OfferItem component
+//it will retrieve the state of authentication as well as the information about the current user logged in
 const mapStateToProps = (state) =>({
 	auth: state.auth
 })

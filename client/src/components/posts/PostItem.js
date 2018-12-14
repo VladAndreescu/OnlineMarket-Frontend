@@ -12,15 +12,16 @@ import Post from '../post/Post';
 
 
 class PostItem extends Component {
-  
+	
+	// clicking the delete button triggers the removePost function that removes a post based on the specific id
 	onDeleteClick(id){
 		this.props.removePost(id)
 	}
-
+	// clicking the like button triggers the like function that likes a post based on the specific id
 	onLikeClick(id){
 		this.props.like(id)
 	}
-
+	// clicking the unlike button triggers the unlike function that unlikes a post based on the specific id
 	onUnlikeClick(id){
 		this.props.unlike(id)
 	}
@@ -106,7 +107,7 @@ class PostItem extends Component {
                   			<Link to={`/post/${post._id}`} className="btn btn-info mr-5">
                     			Contact Seller
                   			</Link>
-				  			{post.user === auth.user.id ? (
+				  			{post.user === auth.user.id || auth.user.admin === true ? (
 					  			<button 
 						  			type="button"
 						  			className="btn btn-danger"
@@ -122,7 +123,7 @@ class PostItem extends Component {
   }
 }
 
-
+// declaring the PropTypes for PostItem component
 PostItem.propTypes = {
 	post: PropTypes.object.isRequired,
 	auth: PropTypes.object.isRequired,
@@ -130,12 +131,15 @@ PostItem.propTypes = {
 	like: PropTypes.func.isRequired,
 	unlike: PropTypes.func.isRequired
 }
-
+//Developed the defaultProps in order to display the make offer like and unlike buttons by default
 PostItem.defaultProps = {
 	displayButtons: true
 }
 
+//developed the mapStateToProps function for Register component
+//it will retrieve the state of authentication as well as the information about the current user logged in
 const mapStateToProps = (state) =>({
 	auth: state.auth
 })
+
 export default connect(mapStateToProps, {removePost, like, unlike})(PostItem)

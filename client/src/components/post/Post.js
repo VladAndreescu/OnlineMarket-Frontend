@@ -13,18 +13,21 @@ import {getPost} from '../../actions/postActions'
 import DisplayOffers from './DisplayOffers';
 
 class Post extends Component {
-
+	//call the function that will retrieve the specifc post based on the ID
 	componentDidMount(){
 		this.props.getPost(this.props.match.params.id)
 	}
   render() {
-	  
+	  	//using destructuring in order to retrieve the current post and the loading state
 		const {post, loading} = this.props.post
 
+		//declaring a value which decides if on the screen will be displayed a spinner
+		//or the actual post followed by the input for making an offer and also followed by the view of offers
 		let postValue
-
+		//if the post does not exists or is loading display the spinner 
 		if(post == null || loading === true || Object.keys(post).length === 0){
 			postValue = <Spinner/>
+		//otherwise display the post + make an offer input component + view all offers component
 		}else{
 			postValue = (
 				<div>
@@ -50,12 +53,13 @@ class Post extends Component {
 		)
   }
 }
-
+// declaring the PropTypes for Post component
 Post.propTypes = {
 	getPost: PropTypes.func.isRequired,
 	post: PropTypes.object.isRequired
 }
-
+//developed the mapStateToProps function for Register component
+//it will retrieve the state of authentication as well as the information about the current user logged in
 const mapStateToProps = (state) =>({
 	post: state.post
 })

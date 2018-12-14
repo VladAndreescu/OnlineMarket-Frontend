@@ -1,3 +1,4 @@
+//implementing private routes in order to allow only registered users to post items for sale
 import React from 'react'
 import {Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -7,6 +8,8 @@ const PrivateRoute = ({component: Component, auth, ...rest}) => (
 	<Route 
 		{...rest}
 		render = {props => 
+			//check if the user is authenticate or not.
+			//if no current user is logged in or the token has expired it will be redirected to login page if he was on a private route
 			auth.isAuthenticated === true ?(
 				<Component {...props} />
 			) : (

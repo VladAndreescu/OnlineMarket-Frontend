@@ -10,6 +10,7 @@ import {userAuthenticate} from '../../actions/authActions'
 class Login extends Component {
 	constructor(){
 		super()
+		//initial state
 		this.state ={
 			email: '',
 			password: '',
@@ -19,16 +20,16 @@ class Login extends Component {
 		this.onChange = this.onChange.bind(this)
 		this.onSubmit = this.onSubmit.bind(this)
 	}
-	//create onChange function
+	//create onChange function which link the user input to the specific target in the state
 	onChange(e){
 		this.setState({[e.target.name]: e.target.value})
 	}
 
-	//create onSubmit function
+	//create onSubmit function which calls the function that authenticate the user
 	onSubmit(e){
 		e.preventDefault();
 		
-		//display the existing user
+		//populate the userData with the user's input
 		const userData = {
 			email: this.state.email,
 			password: this.state.password,
@@ -38,7 +39,10 @@ class Login extends Component {
 		this.props.userAuthenticate(userData)
 	}
 
+
 	componentWillReceiveProps(nextProps){
+		//check if the user is authenticated
+		//if he is than redirect him to /allposts page
 		if(nextProps.auth.isAuthenticated){
 			this.props.history.push('/allposts')
 		}
@@ -50,6 +54,8 @@ class Login extends Component {
 	}
 
 	componentDidMount(){
+		//check if the user is authenticated
+		//if he is than redirect him to /allposts page
 		if(this.props.auth.isAuthenticated){
 			this.props.history.push('/allposts')
 		}
@@ -106,12 +112,15 @@ class Login extends Component {
 	}
 }
 
+// declaring the PropTypes for Login component
 Login.propTypes = {
 	userAuthenticate: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
 }
 
+//developed the mapStateToProps function for Login component
+//it will retrieve the state of authentication as well as the information about the current user logged in and th errors
 const mapStateToProps = (state) =>({
 	auth: state.auth,
 	errors: state.errors

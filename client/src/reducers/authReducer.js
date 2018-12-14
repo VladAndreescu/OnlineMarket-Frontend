@@ -3,6 +3,7 @@ import {SET_CURRENT_USER} from '../actions/types'
 import isEmpty from '../utils/isEmpty'
 
 
+//intial state
 const intialState = {
 	isAuthenticated: false,
 	user: {}

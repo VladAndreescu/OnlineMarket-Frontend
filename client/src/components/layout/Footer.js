@@ -1,3 +1,8 @@
+//implementing footer component
+// I implemented a function that automatically updates the footer to the current year
+
+
+//import utils
 import React from 'react'
 
 export default () => {

@@ -1,12 +1,12 @@
 import {ADD_POST, POST_LOADING, GET_POSTS, DELETE_POST, GET_POST} from '../actions/types'
 
-
+//initial state
 const initialState ={
 	posts: [],
 	post: {},
 	loading: false
 }
-
+//exports the function that decides based on the action type what to do on every request
 export default function(state = initialState, action){
 	switch(action.type){
 		case ADD_POST:

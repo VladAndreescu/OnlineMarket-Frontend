@@ -1,16 +1,20 @@
+//import utils
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 
+//import actions
 import {removeOffer} from '../../actions/postActions'
 
 class OfferItem extends Component {
 
+	//onClick is calling the function that removes the offer based on the postId and offerId
 	onDeleteClick(postId, offerId){
 		this.props.removeOffer(postId, offerId)
 	}
-  render() {
-
+  	render() {
+	//using destructuring in order to retrieve the current offer, postId 
+	//and authentication State as well as the current user that is logged in
 	const {offer, postId, auth} = this.props
 
 	return (
@@ -40,7 +44,7 @@ class OfferItem extends Component {
                   	<p className="lead">{offer.text}</p>
 				</div>
 				<div className="col-md-10">
-					{offer.user === auth.user.id ? (
+					{offer.user === auth.user.id || auth.user.admin === true ? (
 					  	<button 
 						  	type="button"
 						  	className="btn btn-danger"
@@ -55,6 +59,7 @@ class OfferItem extends Component {
   }
 }
 
+// declaring the PropTypes for OfferItem component
 OfferItem.propTypes = {
 	removeOffer: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
@@ -62,7 +67,8 @@ OfferItem.propTypes = {
 	postId: PropTypes.string.isRequired
 	
 }
-
+//developed the mapStateToProps function for OfferItem component
+//it will retrieve the state of authentication as well as the information about the current user logged in
 const mapStateToProps = (state) =>({
 	auth: state.auth
 })

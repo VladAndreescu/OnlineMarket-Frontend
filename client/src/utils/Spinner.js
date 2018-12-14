@@ -1,3 +1,5 @@
+//Implementing a simple spinner which is displayed when loading state is true
+
 import React from 'react'
 import spinner from './spinner.gif'
 

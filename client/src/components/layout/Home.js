@@ -5,10 +5,11 @@ import {connect} from 'react-redux'
 import {PropTypes} from 'prop-types'
 
 class Home extends Component {
-  
+	//check if the user is authenticated
+	//if he is than redirect him to /allposts page
 	componentDidMount(){
 		if(this.props.auth.isAuthenticated){
-			this.props.history.push('/items')
+			this.props.history.push('/allposts')
 		}
 	}
 	
@@ -32,11 +33,13 @@ class Home extends Component {
 	)
   }
 }
-
+// declaring the PropTypes for Home component
 Home.propTypes = {
 	auth: PropTypes.object.isRequired
 }
 
+//developed the mapStateToProps function for Register component
+//it will retrieve the state of authentication as well as the information about the current user logged
 const mapStateToProps = (state) =>({
 	auth: state.auth
 })
