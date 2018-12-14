@@ -14,6 +14,7 @@ import Home from './components/layout/Home'
 import Login from  './components/authentication/Login'
 import Register from './components/authentication/Register'
 import Posts from './components/posts/Posts'
+import Item from './components/posts/Item';
 
 //import files
 import store from './store'
@@ -24,6 +25,7 @@ import {setCurrentUser, userLogout} from './actions/authActions'
 
 //import CSS
 import './App.css';
+
 
 //Check if the token exists
 if(localStorage.jwt_token){
@@ -61,6 +63,9 @@ class App extends Component {
 						<Route exact path="/register" component = {Register} />
 						<Route exact path="/login" component ={Login} />
 						<Route exact path="/allposts" component={Posts}/>
+						<Switch>
+						<PrivateRoute exact path="/listItem" component={Item}/>
+						</Switch>
 					</div>
 					<Footer/>
 				</div>
