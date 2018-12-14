@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import{GET_ERRORS, ADD_POST, GET_POSTS, POST_LOADING, DELETE_POST} from './types'
+import{GET_ERRORS, ADD_POST, GET_POSTS, POST_LOADING, DELETE_POST, GET_POST} from './types'
 
 //--------------Post Actions--------------
 
@@ -37,6 +37,27 @@ export const getPosts = () => dispatch =>{
 		.catch(err => {
 			dispatch({
 				type: GET_POSTS,
+				payload: null
+			})
+			
+		})
+			
+}
+
+// GET only one Post
+export const getPost = (id) => dispatch =>{
+	dispatch(setLoadingPost())
+
+	axios.get(`/api/posts/${id}`)
+		.then(res => {
+			dispatch({
+				type: GET_POST,
+				payload: res.data
+			})
+		})
+		.catch(err => {
+			dispatch({
+				type: GET_POST,
 				payload: null
 			})
 			

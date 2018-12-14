@@ -14,7 +14,8 @@ import Home from './components/layout/Home'
 import Login from  './components/authentication/Login'
 import Register from './components/authentication/Register'
 import Posts from './components/posts/Posts'
-import Item from './components/posts/Item';
+import Item from './components/posts/Item'
+import Post from './components/post/Post'
 
 //import files
 import store from './store'
@@ -64,7 +65,10 @@ class App extends Component {
 						<Route exact path="/login" component ={Login} />
 						<Route exact path="/allposts" component={Posts}/>
 						<Switch>
-						<PrivateRoute exact path="/listItem" component={Item}/>
+							<PrivateRoute exact path="/listItem" component={Item}/>
+						</Switch>
+						<Switch>
+							<PrivateRoute exact path="/post/:id" component={Post}/>
 						</Switch>
 					</div>
 					<Footer/>

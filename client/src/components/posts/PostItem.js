@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import Posts from './Posts';
 
 import {removePost, like, unlike} from '../../actions/postActions'
+import Post from '../post/Post';
 
 
 
@@ -26,7 +27,7 @@ class PostItem extends Component {
 	
 	render() {
 
-	const {post, auth} = this.props
+	const {post, auth, displayButtons} = this.props
 
 
 	return (
@@ -79,43 +80,46 @@ class PostItem extends Component {
 					</p>
                   	<p className="lead" style={{marginLeft: '50px'}}>{post.item_condition}</p>
 				</div>
-				<div 
-					className="col-md-10"
-					style={{paddingTop:'1cm'}}
-					>	
-				  <button 
-				  	style={{
-						  marginLeft: '30px'
-						}}
-					type="button" 
-					onClick={this.onLikeClick.bind(this, post._id)}
-					className="btn btn-light mr-3 ">
-                    <i className="text-info fas fa-thumbs-up"></i>
-                    <span className="badge badge-light">{post.likes.length}</span>
-                  </button>
-				  <button 
-					  type="button" 
-					  onClick={this.onUnlikeClick.bind(this, post._id)}
-					  className="btn btn-light mr-5">
-                    <i className="text-secondary fas fa-thumbs-down"></i>
-                  </button>
-                  <Link to={`/post/${post._id}`} className="btn btn-info mr-5">
-                    Contact Seller
-                  </Link>
-				  {post.user === auth.user.id ? (
-					  <button 
-						  type="button"
-						  className="btn btn-danger"
-						  onClick={this.onDeleteClick.bind(this, post._id)}>
-						  <i className="fas fa-times"/>
-						  </button>
-				  ) : null}
-                </div>
+				{displayButtons ? (
+						<div 
+							className="col-md-10"
+							style={{paddingTop:'1cm'}}
+						>	
+				  			<button 
+				  				style={{
+						  		marginLeft: '30px'
+								}}
+								type="button" 
+								onClick={this.onLikeClick.bind(this, post._id)}
+								className="btn btn-light mr-3 ">
+									<i className="text-info fas fa-thumbs-up"></i>
+									<span className="badge badge-light">{post.likes.length}</span>
+                  			</button>
+				  			<button 
+					  			type="button" 
+					  			onClick={this.onUnlikeClick.bind(this, post._id)}
+					  			className="btn btn-light mr-5">
+                    				<i className="text-secondary fas fa-thumbs-down"></i>
+                  			</button>
+                  			<Link to={`/post/${post._id}`} className="btn btn-info mr-5">
+                    			Contact Seller
+                  			</Link>
+				  			{post.user === auth.user.id ? (
+					  			<button 
+						  			type="button"
+						  			className="btn btn-danger"
+						  			onClick={this.onDeleteClick.bind(this, post._id)}>
+						  				<i className="fas fa-times"/>
+						 		 </button>
+				  			) : null}
+                		</div>
+					): null}
               </div>
             </div>
 	)
   }
 }
+
 
 PostItem.PropTypes = {
 	post: PropTypes.object.isRequired,
@@ -123,6 +127,10 @@ PostItem.PropTypes = {
 	removePost: PropTypes.func.isRequired,
 	like: PropTypes.func.isRequired,
 	unlike: PropTypes.func.isRequired
+}
+
+PostItem.defaultProps = {
+	displayButtons: true
 }
 
 const mapStateToProps = (state) =>({
