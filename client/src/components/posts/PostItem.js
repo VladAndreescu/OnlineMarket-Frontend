@@ -1,12 +1,12 @@
+//import utils
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import {Link} from 'react-router-dom'
-import Posts from './Posts';
 
+//import actions
 import {removePost, like, unlike} from '../../actions/postActions'
-import Post from '../post/Post';
+
 
 
 

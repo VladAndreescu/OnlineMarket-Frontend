@@ -33,7 +33,7 @@ class OfferItem extends Component {
 					</p>
                   	<p className="lead">{offer.value}</p>
 				</div>
-				<div className="col-md-4">
+				<div className="col-md-3">
 					<p 
 						style={{
 							fontSize: '20px',
