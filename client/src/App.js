@@ -13,6 +13,7 @@ import Footer from './components/layout/Footer'
 import Home from './components/layout/Home'
 import Login from  './components/authentication/Login'
 import Register from './components/authentication/Register'
+import Posts from './components/posts/Posts'
 
 //import files
 import store from './store'
@@ -59,7 +60,7 @@ class App extends Component {
 					<div className="container">
 						<Route exact path="/register" component = {Register} />
 						<Route exact path="/login" component ={Login} />
-						
+						<Route exact path="/allposts" component={Posts}/>
 					</div>
 					<Footer/>
 				</div>

@@ -23,7 +23,7 @@ class Navbar extends Component {
 	const loggedInLinks = (
 		<ul className="navbar-nav ml-auto">
 			<li className="nav-item">
-            	<Link to="/items" className="nav-link" >Items Feed</Link>
+            	<Link to="/items" className="nav-link" >List an Item</Link>
           	</li>
           	<li className="nav-item">
             	<Link to="/" onClick={this.onLogoutClick.bind(this)} className="nav-link">Log out</Link>
@@ -55,7 +55,7 @@ class Navbar extends Component {
       			<div className="collapse navbar-collapse" id="mobile-nav">
         			<ul className="navbar-nav mr-auto">
           				<li className="nav-item">
-            				<Link to="/items" className="nav-link" > Items </Link>
+            				<Link to="/allposts" className="nav-link" > View Listed Items </Link>
          				 </li>
         			</ul>
 					{isAuthenticated ? loggedInLinks : guestLinks}
